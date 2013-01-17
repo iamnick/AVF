@@ -1,9 +1,9 @@
 $(document).ready(function() {
 	// Navigation 
-	$('#twitterDiv').click(function() {
+	$('#twitterLi').click(function() {
 		window.location = 'twitterAPI.html';
 	});
-	$('#espnDiv').click(function() {
+	$('#espnLi').click(function() {
 		window.location = 'espnAPI.html';
 	});
 	$('#research1').click(function() {
@@ -21,59 +21,59 @@ $(document).ready(function() {
 		q = $('#query').val();
 		searchURL = 'http://search.twitter.com/search.json?q=' + q + '&rpp=5&include_entities=true&result_type=mixed&callback=?';
 	
-		// Update header with search keywords
-		$('h2:last').html('Search Results for "' + q + '"');
-	
 		$.getJSON(searchURL, function(data) {
 			console.log(data);
+			appendLocation = $('#searchResultsList');
+			appendLocation.html('');
+			// Update header with search keywords
+			var header = $('<h3>')
+				.html('Search results for "<i>' + q + '</i>"')
+				.appendTo(appendLocation)
+			;
 			// Cycle through results and add them to the page
-			appendLocation = $('#searchResults');
 			for (var i = 0, j = data.results.length; i < j; i++) {
 				if (i%2 === 0) {
-					bgColor = '#c5c5c5';
+					bgColor = '#CCFFFF';
 				} else {
-					bgColor = '#e5e5e5';
+					bgColor = '#99DDFF';
 				}
-				var newDiv = $('<div>')
+				var newLi = $('<li>')
 					.css('background', bgColor)
-					.css('border-radius', '10px')
-					.css('padding', '5px 5px 5px 5px')
-					.css('margin', '10px 0px 10px 0px')
 					.appendTo(appendLocation)
-				;
-				
-				// create div to hold profile pic, username, real name
-				var headerDiv = $('<div>')
-					.attr('class', 'iconAndText')
-					.appendTo(newDiv)
 				;
 				var profileImg = $('<img>')
 					.attr('src', data.results[i].profile_image_url)
 					.css('float', 'left')
-					.appendTo(headerDiv)
+					.appendTo(newLi)
 				;
-				var userInfo = $('<span>')
-					.html(data.results[i].from_user_name + '<br /><i>@' + data.results[i].from_user + '</i>')
-					.appendTo(headerDiv)
+				var userRealName = $('<span>')
+					.html(data.results[i].from_user_name)
+					.attr('class', 'tRealName')
+					.appendTo(newLi)
+				;
+				var userName = $('<span>')
+					.html('<br />@' + data.results[i].from_user)
+					.attr('class', 'tUserName')
+					.appendTo(newLi)
 				;
 				var tweetSpan = $('<p>')
 					.html(data.results[i].text)
-					.appendTo(newDiv)
+					.appendTo(newLi)
 				;
 			}
 			var searchTime = $('<span>')
 					.html('Search completed in ' + data.completed_in + ' seconds')
-					.css('font-style', 'italic')
-					.css('font-size', '12px')
+					.attr('class', 'tSearchTime')
 					.appendTo(appendLocation)
 				;
 		});
+		// display
+		$('#searchResults').css('display', 'block');
 	});
 	
 	/**************
 	    ESPN API   
 	 **************/
-	
 	// Shows and populates team list when a league icon is tapped 
 	$('#leagueSelect img').click(function() {
 		// changes opacity of league icon to show it's been selected
@@ -99,6 +99,13 @@ $(document).ready(function() {
 					.html(teams[i].location + ' ' + teams[i].name)
 					.appendTo(appendLocation)
 				;
+				// puts the team name/id of the first team onto the button
+				if (i === 0) {
+					$('#espnButton')
+						.data('teamId', 1)
+						.data('teamName', teams[i].location + ' ' + teams[i].name)
+					;
+				}
 			}	
 		});
 	});	
@@ -118,10 +125,6 @@ $(document).ready(function() {
 		console.log($(this).data('teamId'));
 		teamId = $(this).data('teamId');
 		teamName = $(this).data('teamName');
-		
-		// display settings
-		$('#teamNews').css('display', 'block');
-		$('#teamNewsHeader').html('Top News Stories for the ' + teamName);
 		
 		var searchURL = 'http://api.espn.com/v1/sports/football/nfl/teams/' + teamId + '/news?apikey=dbs57muuwwnphn5sbhb9w355';
 		$.getJSON(searchURL, function(data) {
@@ -153,5 +156,8 @@ $(document).ready(function() {
 				}
 			}
 		});
+		// display settings
+		$('#teamNews').css('display', 'block');
+		$('#teamNewsHeader').html('Top News Stories for the ' + teamName);
 	});
 });

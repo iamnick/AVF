@@ -6,6 +6,26 @@ body {
 	padding: 20px 20px 20px 20px;
 }
 
+ul {
+	margin: 0px;
+	padding: 0px;
+	list-style-type: none;
+}
+
+ul li {
+	padding: 10px 10px 10px 10px;
+	margin: 10px 0px 10px 0px;
+}
+
+li img {
+	margin: 0px 10px 0px 0px;
+	vertical-align: middle;
+}
+
+li p {
+	padding: 5px 20px 5px 20px;
+}
+
 h1 {
 	text-shadow: 2px 2px 1px rgba(17, 23, 94, .2);
 	text-align: center;
@@ -30,15 +50,6 @@ h4 {
 	padding: 10px 20px 10px 20px;
 }
 
-.iconAndText {
-	padding: 5px 0px 5px 0px;
-}
-
-.iconAndText img {
-	padding: 0px 15px 0px 0px;
-	vertical-align: middle;
-}
-
 .returnHome {
 	text-align: center;
 }
@@ -57,6 +68,34 @@ h4 {
 .apiHeader h2 {
 	display: inline;
 }
+
+/* Twitter API */
+
+#searchResultsList li {
+	border-radius: 10px;
+	padding: 5px 5px 5px 5px;
+	margin: 10px 0px 10px 0px;
+}
+
+.tRealName {
+	font-size: 20px;
+	font-weight: bold;
+	text-shadow: 2px 2px 1px rgba(17, 23, 94, .2);
+}
+
+.tUserName {
+	font-size: 16px;
+	font-style: italic;
+	text-shadow: 2px 2px 1px rgba(17, 23, 94, .2);
+	opacity: 0.7;
+}
+
+.tSearchTime {
+	font-size: 12px;
+	font-style: italic;
+}
+
+/* ESPN API */
 
 #leagueSelect img {
 	opacity: 0.4;
