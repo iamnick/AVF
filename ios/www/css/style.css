@@ -1,0 +1,74 @@
+/* stylesheet for AVF Test App - Nick Stelzer */
+
+body {
+	font-family: Arial, Helvetica, serif;
+	background: #11175e;
+	padding: 20px 20px 20px 20px;
+}
+
+h1 {
+	text-shadow: 2px 2px 1px rgba(17, 23, 94, .2);
+	text-align: center;
+}
+
+h2 {
+	text-shadow: 2px 2px 1px rgba(17, 23, 94, .2);
+}
+
+h3 {
+	text-shadow: 2px 2px 1px rgba(17, 23, 94, .2);
+}
+
+h4 {
+	text-shadow: 2px 2px 1px rgba(17, 23, 94, .2);
+}
+
+.contentBlock {
+	background: #ffffff;
+	border-radius: 25px;
+	margin: 20px 0px 20px 0px;
+	padding: 10px 20px 10px 20px;
+}
+
+.iconAndText {
+	padding: 5px 0px 5px 0px;
+}
+
+.iconAndText img {
+	padding: 0px 15px 0px 0px;
+	vertical-align: middle;
+}
+
+.returnHome {
+	text-align: center;
+}
+
+/* Styling for API pages */
+
+.apiHeader {
+	padding: 5px 0px 5px 0px;
+}
+
+.apiHeader img {
+	padding: 0px 15px 0px 0px;
+	vertical-align: middle;
+}
+
+.apiHeader h2 {
+	display: inline;
+}
+
+#leagueSelect img {
+	opacity: 0.4;
+	margin: 5px 5px 5px 5px;
+	padding: 0px 10px 0px 10px;
+}
+
+#teamSelect {
+	display: inline;
+}
+
+#espnButton {
+	margin: 0px 20px 0px 0px;
+	float: right;
+}
