@@ -24,7 +24,7 @@ $(document).ready(function() {
 		$.getJSON(searchURL, function(data) {
 			console.log(data);
 			appendLocation = $('#searchResultsList');
-			appendLocation.html('');
+			appendLocation.html('').css('list-style-type', 'none');
 			// Update header with search keywords
 			var header = $('<h3>')
 				.html('Search results for "<i>' + q + '</i>"')
@@ -73,7 +73,7 @@ $(document).ready(function() {
 	
 	/**************
 	    ESPN API   
-	 **************/
+	 **************/ 
 	// Shows and populates team list when a league icon is tapped 
 	$('#leagueSelect img').click(function() {
 		// changes opacity of league icon to show it's been selected
@@ -83,11 +83,15 @@ $(document).ready(function() {
 		});
 		$(selectedLeague).css('opacity', '1.0');
 		
+		// puts the league ID onto the 'get news' button so it can be used in the query url
+		var leagueId = $(selectedLeague).attr('id');
+		$('#espnButton').data('leagueId', leagueId);
+		
 		//enable select team list and get news button
 		$('#teamList').removeAttr('disabled');
 		$('#espnButton').removeAttr('disabled');
 		
-		var teamsURL = 'http://api.espn.com/v1/sports/' + $(selectedLeague).attr('id') + '/teams/:teamId?apikey=dbs57muuwwnphn5sbhb9w355';
+		var teamsURL = 'http://api.espn.com/v1/sports/' + leagueId + '/teams/:teamId?apikey=dbs57muuwwnphn5sbhb9w355';
 		$.getJSON(teamsURL, function(data) {
 			console.log(data);
 			appendLocation = $('#teamList');
@@ -122,14 +126,16 @@ $(document).ready(function() {
 	
 	// Loads up to 10 headlines for each team
 	$('#espnButton').click(function() {
-		console.log($(this).data('teamId'));
+		// pull variables off of the 'get news' button
 		teamId = $(this).data('teamId');
 		teamName = $(this).data('teamName');
+		leagueId = $(this).data('leagueId');
 		
-		var searchURL = 'http://api.espn.com/v1/sports/football/nfl/teams/' + teamId + '/news?apikey=dbs57muuwwnphn5sbhb9w355';
+		var searchURL = 'http://api.espn.com/v1/sports/' + leagueId + '/teams/' + teamId + '/news?apikey=dbs57muuwwnphn5sbhb9w355';
 		$.getJSON(searchURL, function(data) {
 			console.log(data);
-			appendLocation = $('#teamNews').html('');
+			appendLocation = $('#teamNewsList');
+			appendLocation.html('');
 			var header = $('<h3>')
 				.html('Top news stories for the ' + teamName)
 				.appendTo(appendLocation)
@@ -137,21 +143,20 @@ $(document).ready(function() {
 			for (var i = 0, j = data.headlines.length; i < j; i++) {
 				// Check to see if the article is premium (we only want to show non-premium stories)
 				if (data.headlines[i].premium === false) {
-					var newDiv = $('<div>')
-						// .css('background', 
-						.data('linkURL', data.headlines[i].links.mobile.href)
-						.click(function() {
-							window.location = $(this).data('linkURL');
-						})
-						.appendTo(teamNews)
+					var newLi = $('<li>') 
+						//.data('linkURL', data.headlines[i].links.mobile.href)
+						//.click(function() {
+						//	window.location = $(this).data('linkURL');
+						//})
+						.appendTo(appendLocation)
 					;
 					var newsHeading = $('<h4>')
 						.html(data.headlines[i].headline)
-						.appendTo(newDiv)
+						.appendTo(newLi)
 					;
 					var newsDescrip = $('<p>')
 						.html(data.headlines[i].description)
-						.appendTo(newDiv)
+						.appendTo(newLi)
 					;
 				}
 			}

@@ -6,6 +6,26 @@ body {
 	padding: 20px 20px 20px 20px;
 }
 
+select {
+	height: 30px;
+	width: auto;
+	font-size: 16px;
+}
+
+input[type='text'] {
+	height: 20px;
+	width: 180px;
+	font-size: 16px;
+}
+
+input[type='button'] {
+	height: 30px;
+	width: 140px;
+	font-size: 18px;
+	display: block;
+	margin: 10px 0px 10px 0px;
+}
+
 ul {
 	margin: 0px;
 	padding: 0px;
@@ -13,17 +33,13 @@ ul {
 }
 
 ul li {
-	padding: 10px 10px 10px 10px;
+	padding: 5px 10px 5px 10px;
 	margin: 10px 0px 10px 0px;
 }
 
-li img {
+ul li img {
 	margin: 0px 10px 0px 0px;
 	vertical-align: middle;
-}
-
-li p {
-	padding: 5px 20px 5px 20px;
 }
 
 h1 {
@@ -73,8 +89,12 @@ h4 {
 
 #searchResultsList li {
 	border-radius: 10px;
-	padding: 5px 5px 5px 5px;
+	padding: 10px 10px 10px 10px;
 	margin: 10px 0px 10px 0px;
+}
+
+#searchResultsList li p {
+	padding: 5px 20px 5px 20px;
 }
 
 .tRealName {
@@ -107,7 +127,7 @@ h4 {
 	display: inline;
 }
 
-#espnButton {
-	margin: 0px 20px 0px 0px;
-	float: right;
+#teamNewsList li {
+	margin: 0px;
+	padding: 20px 0px 0px 0px;
 }
