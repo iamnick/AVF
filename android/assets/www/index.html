@@ -4,49 +4,59 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="format-detection" content="telephone=no" />
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
-        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
         <title>AVF Test App</title>
     </head>
 	<body>
-		<div class="contentBlock">
+		<div class="contentBlock" id="indexHeader">
 			<h1>AVF Test App</h1>
 			<p>This test app will demonstrate different features of an iOS and Android device.</p>
 		</div>
 		<div class="contentBlock">
-			<h2>iOS/Android Native Feature Demos</h2>
-			<div class="iconAndText">
-				<img src="img/icon.png" /><span>Contacts with Camera and Geo</span>
-			</div>
-			<div class="iconAndText">
-				<img src="img/icon.png" /><span>Gift app with Barcode scanner</span>
-			</div>
-			<div class="iconAndText">
-				<img src="img/icon.png" /><span>Network</span>
-			</div>
-			<div class="iconAndText">
-				<img src="img/icon.png" /><span>Accelerometer</span>
-			</div>
-			<div class="iconAndText">
-				<img src="img/icon.png" /><span>etc...</span>
-			</div>
+			<h2>iOS Native Feature Demos</h2>
+			<ul>
+				<li>
+					<img src="img/icon.png" /><span>Contacts with Camera and Geo</span>
+				</li>
+				<li>
+					<img src="img/icon.png" /><span>Gift app with Barcode scanner</span>
+				</li>
+				<li>
+					<img src="img/icon.png" /><span>Network</span>
+				</li>
+				<li>
+					<img src="img/icon.png" /><span>Accelerometer</span>
+				</li>
+				<li>
+					<img src="img/icon.png" /><span>etc...</span>
+				</li>
+			</ul>
 		</div>
 		<div class="contentBlock">
 			<h2>JSON-P Data APIs</h2>
-			<div class="iconAndText">
-				<img src="img/icon.png" /><span>Fantasy Football API</span>
-			</div>
-			<div class="iconAndText">
-				<img src="img/icon.png" /><span>2012 Olympics Stats</span>
-			</div>
+			<ul>
+				<li id="twitterLi">
+					<img src="img/twitter-icon.png" /><span>Twitter API</span>
+				</li>
+				<li class="iconAndText" id="espnLi">
+					<img src="img/espn-icon.png" /><span>ESPN API</span>
+				</li>
+			</ul>
 		</div>
 		<div class="contentBlock">
 			<h2>Research</h2>
-			<p>Research Links Go Here!</p>
+			<ul>
+				<li id="research1">
+					<img src="img/icon.png" /><span>Week 1 Research</span>
+				</li>
+			</ul>
 		</div>
 		<div class="contentBlock">
 			<h2>About</h2>
 			<p>Designed by Nick Stelzer - AVF 1301</p>
 		</div>
-    	<script type="text/javascript" src="cordova-2.3.0.js"></script>
+		<script type="text/javascript" src="cordova-2.3.0.js"></script>
+		<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+		<script src="js/main.js" type="text/javascript"></script>
 	</body>
 </html>
