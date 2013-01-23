@@ -9,6 +9,9 @@ $(document).ready(function() {
 	$('#research1').click(function() {
 		window.location = 'research1.html';
 	});
+    $('#geocompassLi').click(function(){
+        window.location = 'geocompass.html';
+    });
 	$('.returnHome').click(function() {
 		window.location = 'index.html';
 	});
@@ -165,4 +168,35 @@ $(document).ready(function() {
 		$('#teamNews').css('display', 'block');
 		$('#teamNewsHeader').html('Top News Stories for the ' + teamName);
 	});
+	
+	/**************
+	  Geo-Location
+	 **************/
+    function geoSuccess(position) {
+        // display location details above map
+        $('#latLi').html('Latitude: ' + position.coords.latitude);
+        $('#lngLi').html('Longitude: ' + position.coords.longitude);
+        $('#altLi').html('Altitude: ' + position.coords.altitude);
+
+        // create the google map & marker
+        var loc = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+        // the Map method doesn't accept jquery objects, have to use getElementById
+        var map = new google.maps.Map(document.getElementById('mapDiv'), {
+            center: loc,
+            zoom: 10,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        });
+        var marker = new google.maps.Marker({
+            animation: google.maps.Animation.DROP,
+            position: loc,
+            map: map
+        });
+        console.log('test');
+    }
+    
+    // runs if we are on the geocompass page
+	if ($('#mapDiv').length > 0) {
+        navigator.geolocation.getCurrentPosition(geoSuccess);
+    }
+
 });
