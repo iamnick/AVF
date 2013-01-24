@@ -9,6 +9,9 @@ $(document).ready(function() {
 	$('#research1').click(function() {
 		window.location = 'research1.html';
 	});
+    $('#research2').click(function() {
+    	window.location = 'research2.html';
+    });
     $('#geoLi').click(function(){
         window.location = 'geo.html';
     });
@@ -251,4 +254,8 @@ $(document).ready(function() {
     	var accelOpts = { frequency: 1000 };
     	var watchId = navigator.accelerometer.watchAcceleration(accelSuccess, accelError, accelOpts);
     });
+    
+	/***************
+      Globalization
+     ***************/
 });

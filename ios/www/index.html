@@ -4,7 +4,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="format-detection" content="telephone=no" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-        <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <link rel="stylesheet" type="text/css" href="css/smallscreen.css" />
+        <link rel="stylesheet" type="text/css" href="css/largescreen.css" media="screen and (min-device-width: 768px)" />
         <title>AVF Test App</title>
     </head>
 	<body>
@@ -13,39 +14,42 @@
 			<p>This test app will demonstrate different features of an iOS and Android device.</p>
 		</div>
 		<div class="contentBlock">
-			<h2>iOS Native Feature Demos</h2>
-			<ul>
-				<li class="iconAndText" id="geoLi">
-					<img src="img/geo-icon.png" /><span>Geo-Location and Compass</span>
+			<h2>Native Feature Demos</h2>
+			<ul class="menu">
+				<li id="geoLi">
+					Geo-Location and Compass
 				</li>
-				<li class="iconAndText" id="accelLi">
-					<img src="img/accel-icon.png" /><span>Accelerometer</span>
+				<li id="accelLi">
+					Accelerometer
 				</li>
-				<li class="iconAndText">
-					<img src="img/icon.png" /><span>Network</span>
+				<li>
+					Network
 				</li>
-				<li class="iconAndText">
-					<img src="img/icon.png" /><span>etc...</span>
+				<li>
+					etc...
 				</li>
 			</ul>
 		</div>
 		<div class="contentBlock">
 			<h2>JSON-P Data APIs</h2>
-			<ul>
+			<ul class="menu">
 				<li id="twitterLi">
-					<img src="img/twitter-icon.png" /><span>Twitter API</span>
+					Twitter API
 				</li>
-				<li class="iconAndText" id="espnLi">
-					<img src="img/espn-icon.png" /><span>ESPN API</span>
+				<li id="espnLi">
+					ESPN API
 				</li>
 			</ul>
 		</div>
 		<div class="contentBlock">
 			<h2>Research</h2>
-			<ul>
+			<ul id="researchMenu" class="menu">
 				<li id="research1">
-					<img src="img/icon.png" /><span>Week 1 Research</span>
+					Week 1 Research
 				</li>
+                <li id="research2">
+                	Week 2 Research
+                </li>
 			</ul>
 		</div>
 		<div class="contentBlock">
