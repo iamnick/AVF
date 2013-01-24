@@ -33,7 +33,6 @@ $(document).ready(function() {
 		$.getJSON(searchURL, function(data) {
 			console.log(data);
 			appendLocation = $('#searchResultsList');
-			appendLocation.html('').css('list-style-type', 'none');
 			// Update header with search keywords
 			var header = $('<h3>')
 				.html('Search results for "<i>' + q + '</i>"')
@@ -42,17 +41,17 @@ $(document).ready(function() {
 			// Cycle through results and add them to the page
 			for (var i = 0, j = data.results.length; i < j; i++) {
 				if (i%2 === 0) {
-					bgColor = '#CCFFFF';
+                	bgClass = 'tEvenBg';
 				} else {
-					bgColor = '#99DDFF';
+                	bgClass = 'tOddBg';
 				}
 				var newLi = $('<li>')
-					.css('background', bgColor)
+					.attr('class', bgClass)
 					.appendTo(appendLocation)
 				;
 				var profileImg = $('<img>')
 					.attr('src', data.results[i].profile_image_url)
-					.css('float', 'left')
+					.css('class', 'tProfileImg')
 					.appendTo(newLi)
 				;
 				var userRealName = $('<span>')
@@ -85,13 +84,7 @@ $(document).ready(function() {
 	 **************/ 
 	// Shows and populates team list when a league icon is tapped 
 	$('#leagueSelect img').click(function() {
-		// changes opacity of league icon to show it's been selected
 		selectedLeague = $(this);
-		$('#leagueSelect img').each(function() {
-			$(this).css('opacity', '0.4');
-		});
-		$(selectedLeague).css('opacity', '1.0');
-		
 		// puts the league ID onto the 'get news' button so it can be used in the query url
 		var leagueId = $(selectedLeague).attr('id');
 		$('#espnButton').data('leagueId', leagueId);

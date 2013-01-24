@@ -15,6 +15,17 @@ body {
     padding: 0;
 }
 
+.contentBlock {
+	background: #ffffff;
+	border-radius: 25px;
+	margin: 20px 10px 20px 10px;
+	padding: 10px 20px 10px 20px;
+}
+
+.returnHome {
+	text-align: center;
+}
+
 select {
 	height: 30px;
 	width: auto;
@@ -30,7 +41,7 @@ input[type='text'] {
 input[type='button'] {
 	height: 30px;
 	font-size: 18px;
-	margin: 0px 0px 0px 20px;
+	margin: 10px 0px 10px 20px;
 }
 
 ul {
@@ -88,17 +99,6 @@ h4 {
 	text-shadow: 2px 2px 1px rgba(17, 23, 94, .2);
 }
 
-.contentBlock {
-	background: #ffffff;
-	border-radius: 25px;
-	margin: 20px 10px 20px 10px;
-	padding: 10px 20px 10px 20px;
-}
-
-.returnHome {
-	text-align: center;
-}
-
 /* Styling for API pages */
 
 .header {
@@ -144,10 +144,20 @@ h4 {
 	font-style: italic;
 }
 
+.tProfileImg {
+	float: left;
+}
+
+.tOddBg {
+	background: #99DDFF;
+}
+
+.tEvenBg {
+	background: #CCFFFF;
+}
 /* ESPN API */
 
 #leagueSelect img {
-	opacity: 0.4;
 	margin: 5px 5px 5px 5px;
 	padding: 0px 10px 0px 10px;
 }
