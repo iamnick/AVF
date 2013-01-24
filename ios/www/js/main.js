@@ -18,6 +18,9 @@ $(document).ready(function() {
     $('#accelLi').click(function(){
     	window.location = 'accel.html';
     });
+    $('#htmlVideoLi').click(function(){
+    	window.location = 'video.html';
+    });
 	$('.returnHome').click(function() {
 		window.location = 'index.html';
 	});
@@ -222,20 +225,20 @@ $(document).ready(function() {
         
         // vertical tilts
         if ((9 > y) && (y > 4) && (9 > z) && (z > 4)) {
-        	$('#vertTilt').html('Vertical Tilt: Tilted Backwards');
+        	$('#vertTilt').html('Tilted Backwards');
         } else if ((0.5 > x ) && (x > -0.5) && (0.5 > z) && (z > -0.5) && (10.5 > y) && (y > 9.5)) {
-        	$('#vertTilt').html('Vertical Tilt: Device Straight Up');
+        	$('#vertTilt').html('Device Straight Up');
         } else if ((0.5 > x) && (x > -0.5) && (0.5 > y) && (y > -0.5) && (10.5 > z) && (z > 9.5)) {
-        	$('#vertTilt').html('Vertical Tilt: Device Flat, Facing Upward');
+        	$('#vertTilt').html('Device Flat, Facing Upward');
         }
         
         // left/right tilts
         if (x > 1) {
-        	$('#horiTilt').html('Horizontal Tilt: Tilted Left');
+        	$('#horiTilt').html('Tilted Left');
         } else if (x < -1) {
-        	$('#horiTilt').html('Horizontal Tilt: Tilted Right');
+        	$('#horiTilt').html('Tilted Right');
         } else {
-            $('#horiTilt').html('Horizontal Tilt: No Tilt');
+            $('#horiTilt').html('No Tilt');
         }
     }
     

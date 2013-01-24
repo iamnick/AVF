@@ -7,6 +7,7 @@ Nick Stelzer
 html {
     height: 100%;
 }
+
 body {
 	font-family: Arial, Helvetica, serif;
 	background: #11175e;
@@ -74,6 +75,10 @@ ul {
 
 #espnLi {
 	background-image: url('../img/espn-icon.png');
+}
+
+#htmlVideoLi {
+	background-image: url('../img/video-icon.png');
 }
 
 #researchMenu li {
@@ -155,6 +160,7 @@ h4 {
 .tEvenBg {
 	background: #CCFFFF;
 }
+
 /* ESPN API */
 
 #leagueSelect img {
@@ -190,11 +196,18 @@ h4 {
 
 #accelDiv {
 	text-align: center;
-    vertical-align: center;
-    min-height: 200px;
+    font-size: 24px;
+    font-weight: bold;
 }
 
 #accelDiv span {
 	display: block;
 	font-size: 20px;
+    margin-bottom: 20px;
+}
+
+/* HTML Video Tag */
+
+#videoDiv {
+	text-align: center;
 }
