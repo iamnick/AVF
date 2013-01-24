@@ -12,8 +12,8 @@ $(document).ready(function() {
     $('#geoLi').click(function(){
         window.location = 'geo.html';
     });
-    $('#compassLi').click(function(){
-    	window.location = 'compass.html';
+    $('#accelLi').click(function(){
+    	window.location = 'accel.html';
     });
 	$('.returnHome').click(function() {
 		window.location = 'index.html';
@@ -172,9 +172,9 @@ $(document).ready(function() {
 		$('#teamNewsHeader').html('Top News Stories for the ' + teamName);
 	});
 	
-	/**************
-	  Geo-Location
-	 **************/
+	/************************
+	  Geo-Location & Compass
+	 ************************/
     function geoSuccess(position) {
         // display location details above map
         $('#latLi').html('Latitude: ' + position.coords.latitude);
@@ -214,5 +214,41 @@ $(document).ready(function() {
     	navigator.geolocation.getCurrentPosition(geoSuccess, geoError);
 		var watchId = navigator.compass.watchHeading(compassSuccess, compassError);
     });
-
+	
+    /***************
+      Accelerometer
+     ***************/
+    function accelSuccess(accel) {
+    	// get variables from object since we will be testing them alot
+        var x = accel.x;
+        var y = accel.y;
+        var z = accel.z;
+        
+        // vertical tilts
+        if ((9 > y) && (y > 4) && (9 > z) && (z > 4)) {
+        	$('#vertTilt').html('Vertical Tilt: Tilted Backwards');
+        } else if ((0.5 > x ) && (x > -0.5) && (0.5 > z) && (z > -0.5) && (10.5 > y) && (y > 9.5)) {
+        	$('#vertTilt').html('Vertical Tilt: Device Straight Up');
+        } else if ((0.5 > x) && (x > -0.5) && (0.5 > y) && (y > -0.5) && (10.5 > z) && (z > 9.5)) {
+        	$('#vertTilt').html('Vertical Tilt: Device Flat, Facing Upward');
+        }
+        
+        // left/right tilts
+        if (x > 1) {
+        	$('#horiTilt').html('Horizontal Tilt: Tilted Left');
+        } else if (x < -1) {
+        	$('#horiTilt').html('Horizontal Tilt: Tilted Right');
+        } else {
+            $('#horiTilt').html('Horizontal Tilt: No Tilt');
+        }
+    }
+    
+    function accelError() {
+    	console.log('Error with Accelerometer');
+    }
+     
+    $('#accelButton').click(function() {
+    	var accelOpts = { frequency: 1000 };
+    	var watchId = navigator.accelerometer.watchAcceleration(accelSuccess, accelError, accelOpts);
+    });
 });

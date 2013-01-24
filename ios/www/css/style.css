@@ -140,7 +140,7 @@ h4 {
 	box-shadow: 8px 8px 4px #888;
 }
 
-/* GeoLocation */
+/* GeoLocation & Compass */
 
 #mapDiv {
     border-radius: 25px;
@@ -150,13 +150,15 @@ h4 {
     width: 80%;
 }
 
-/* Compass */
-#compassDiv {
-	vertical-align: center;
-    text-align: center;
+/* Accelerometer */
+
+#accelDiv {
+	text-align: center;
+    vertical-align: center;
+    min-height: 200px;
 }
 
-#directionArrow {
-    font-weight: bold;
-    font-size: 36px;
+#accelDiv span {
+	display: block;
+	font-size: 20px;
 }
