@@ -9,8 +9,11 @@ $(document).ready(function() {
 	$('#research1').click(function() {
 		window.location = 'research1.html';
 	});
-    $('#geocompassLi').click(function(){
-        window.location = 'geocompass.html';
+    $('#geoLi').click(function(){
+        window.location = 'geo.html';
+    });
+    $('#compassLi').click(function(){
+    	window.location = 'compass.html';
     });
 	$('.returnHome').click(function() {
 		window.location = 'index.html';
@@ -191,12 +194,25 @@ $(document).ready(function() {
             position: loc,
             map: map
         });
-        console.log('test');
     }
     
-    // runs if we are on the geocompass page
-	if ($('#mapDiv').length > 0) {
-        navigator.geolocation.getCurrentPosition(geoSuccess);
+    function geoError() {
+    	console.log('Error with Geo-Location');
     }
+    
+    function compassSuccess (heading) {
+        var h = heading.magneticHeading;
+        var directions = ["N", "NE", "E", "SE", "S", "SW", "W", "NW"];
+        $('#compassLi').html('Facing: ' + directions[Math.floor((h%360)/45)]);
+    }
+    
+    function compassError () {
+    	console.log('Error with Compass');
+    }
+    
+    $('#whereAmI').click(function() {
+    	navigator.geolocation.getCurrentPosition(geoSuccess, geoError);
+		var watchId = navigator.compass.watchHeading(compassSuccess, compassError);
+    });
 
 });
