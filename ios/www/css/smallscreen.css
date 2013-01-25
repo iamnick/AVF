@@ -69,6 +69,10 @@ ul {
 	background-image: url('../img/accel-icon.png');
 }
 
+#cameraLi {
+	background-image: url('../img/camera-icon.png');
+}
+
 #twitterLi {
 	background-image: url('../img/twitter-icon.png');
 }

@@ -18,6 +18,9 @@ $(document).ready(function() {
     $('#accelLi').click(function(){
     	window.location = 'accel.html';
     });
+    $('#cameraLi').click(function(){
+    	window.location = 'camera.html';
+    });
     $('#htmlVideoLi').click(function(){
     	window.location = 'video.html';
     });
@@ -251,7 +254,32 @@ $(document).ready(function() {
     	var watchId = navigator.accelerometer.watchAcceleration(accelSuccess, accelError, accelOpts);
     });
     
-	/***************
-      Globalization
-     ***************/
+	/********
+      Camera
+     ********/
+    $('#cameraButton').click(function(){
+    	function cameraSuccess(img) {
+        	var cameraDiv = $('#cameraDiv');
+            var cameraImg = $('<img>')
+            	.attr('src', 'data:image/jpeg;base64,' + img)
+                .appendTo(cameraDiv)
+            ;
+        }
+        
+        function cameraError(msg) {
+        	console.log('Error with Camera');
+        	console.log(msg);
+        }
+        
+        var cameraOpts = {
+        	quality: 75,
+            encodingType: Camera.EncodingType.JPEG,
+            targetWidth: 200,
+            targetHeight: 200,
+            destinationType: Camera.DestinationType.DATA_URL,
+            saveToPhotoAlbum: false
+        };
+    
+    	navigator.camera.getPicture(cameraSuccess, cameraError, cameraOpts);
+    });
 });

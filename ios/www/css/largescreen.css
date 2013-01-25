@@ -7,12 +7,24 @@ Nick Stelzer
 html {
     height: 100%;
 }
+
 body {
 	font-family: Arial, Helvetica, serif;
 	background: #11175e;
     height: 100%;
     margin: 0;
     padding: 0;
+}
+
+.contentBlock {
+	background: #ffffff;
+	border-radius: 25px;
+	margin: 20px 20px 20px 20px;
+	padding: 20px 20px 20px 20px;
+}
+
+.returnHome {
+	text-align: center;
 }
 
 select {
@@ -22,36 +34,63 @@ select {
 }
 
 input[type='text'] {
-	height: 20px;
-	width: 180px;
-	font-size: 16px;
+	height: 30px;
+	width: 200px;
+	font-size: 18px;
 }
 
 input[type='button'] {
-	height: 30px;
+	height: 40px;
 	font-size: 18px;
-	margin: 0px 0px 0px 20px;
+	margin: 10px 0px 10px 20px;
 }
 
 ul {
+	list-style-type: none;
 	margin: 0px;
 	padding: 0px;
-	list-style-type: none;
 }
 
-ul li {
-	padding: 5px 10px 5px 10px;
+.menu li {
+	padding: 0px 10px 0px 60px;
 	margin: 10px 0px 10px 0px;
+    background-repeat: no-repeat;
+    height: 48px;
+    line-height: 48px;
 }
 
-ul li img {
-	margin: 0px 10px 0px 0px;
-	vertical-align: middle;
+/* Menu Background Icons */
+
+#geoLi {
+	background-image: url('../img/geo-icon.png');
+}
+
+#accelLi {
+	background-image: url('../img/accel-icon.png');
+}
+
+#cameraLi {
+	background-image: url('../img/camera-icon.png');
+}
+
+#twitterLi {
+	background-image: url('../img/twitter-icon.png');
+}
+
+#espnLi {
+	background-image: url('../img/espn-icon.png');
+}
+
+#htmlVideoLi {
+	background-image: url('../img/video-icon.png');
+}
+
+#researchMenu li {
+	background-image: url('../img/research-icon.png');
 }
 
 h1 {
 	text-shadow: 2px 2px 1px rgba(17, 23, 94, .2);
-	text-align: center;
 }
 
 h2 {
@@ -64,17 +103,6 @@ h3 {
 
 h4 {
 	text-shadow: 2px 2px 1px rgba(17, 23, 94, .2);
-}
-
-.contentBlock {
-	background: #ffffff;
-	border-radius: 25px;
-	margin: 20px 10px 20px 10px;
-	padding: 10px 20px 10px 20px;
-}
-
-.returnHome {
-	text-align: center;
 }
 
 /* Styling for API pages */
@@ -122,10 +150,21 @@ h4 {
 	font-style: italic;
 }
 
+.tProfileImg {
+	float: left;
+}
+
+.tOddBg {
+	background: #99DDFF;
+}
+
+.tEvenBg {
+	background: #CCFFFF;
+}
+
 /* ESPN API */
 
 #leagueSelect img {
-	opacity: 0.4;
 	margin: 5px 5px 5px 5px;
 	padding: 0px 10px 0px 10px;
 }
@@ -151,18 +190,25 @@ h4 {
 	margin: 20px 10px 20px 10px;
 	padding: 10px 20px 10px 20px;
     height: 50%;
-    width: 80%;
+    width: 90%;
 }
 
 /* Accelerometer */
 
 #accelDiv {
 	text-align: center;
-    vertical-align: center;
-    min-height: 200px;
+    font-size: 24px;
+    font-weight: bold;
 }
 
 #accelDiv span {
 	display: block;
 	font-size: 20px;
+    margin-bottom: 20px;
+}
+
+/* HTML Video Tag */
+
+#videoDiv {
+	text-align: center;
 }

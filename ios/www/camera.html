@@ -4,15 +4,19 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="format-detection" content="telephone=no" />
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
-        <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <link rel="stylesheet" type="text/css" href="css/smallscreen.css" media="screen and (max-device-width: 767px)" />
+        <link rel="stylesheet" type="text/css" href="css/largescreen.css" media="screen and (min-device-width: 768px)" />
         <title>AVF Test App</title>
     </head>
 	<body>
-    	<div class="header">
-            <img src="img/read-icon.png" />
-            <h2>Read File</h2>
+    	<div class="contentBlock">
+            <div class="header">
+                <img src="img/camera-icon.png" />
+                <h2>Camera</h2>
+            </div>
+            <input type="button" id="cameraButton" value="Take Picture" />
         </div>
-		<div id="readDiv" class="contentBlock">
+		<div id="cameraDiv" class="contentBlock">
 		</div>
         <div class="contentBlock returnHome">
 			<h4>Tap here to return Home</h4>
