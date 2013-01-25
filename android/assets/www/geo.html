@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <link rel="stylesheet" type="text/css" href="css/smallscreen.css" media="screen and (max-device-width: 767px)" />
+        <link rel="stylesheet" type="text/css" href="css/largescreen.css" media="screen and (min-device-width: 768px)" />
+        <title>AVF Test App</title>
+    </head>
+	<body>
+    	<div class="contentBlock">
+            <div class="header">
+                <img src="img/geo-icon.png" />
+                <h2>Geo-Location</h2>
+            </div>
+            <input id="whereAmI" type="button" value="Where Am I?" />
+		</div>
+        <div id="mapDiv">
+		</div>
+		<div id="locDetailsDiv" class="contentBlock">
+            <ul id="locDetailsList">
+				<li id="latLi"></li>
+				<li id="lngLi"></li>
+				<li id="altLi"></li>
+                <li id="compassLi"></li>
+			</ul>
+		</div>
+        <div class="contentBlock returnHome">
+			<h4>Tap here to return Home</h4>
+		</div>
+		<script type="text/javascript" src="cordova-2.3.0.js"></script>
+		<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAyLIK4XA9UZGRXdIjQiAAP9_Cstn4HVxQ&sensor=false"></script>
+		<script src="js/main.js" type="text/javascript"></script>
+	</body>
+</html>

@@ -9,6 +9,21 @@ $(document).ready(function() {
 	$('#research1').click(function() {
 		window.location = 'research1.html';
 	});
+    $('#research2').click(function() {
+    	window.location = 'research2.html';
+    });
+    $('#geoLi').click(function(){
+        window.location = 'geo.html';
+    });
+    $('#accelLi').click(function(){
+    	window.location = 'accel.html';
+    });
+    $('#cameraLi').click(function(){
+    	window.location = 'camera.html';
+    });
+    $('#htmlVideoLi').click(function(){
+    	window.location = 'video.html';
+    });
 	$('.returnHome').click(function() {
 		window.location = 'index.html';
 	});
@@ -18,13 +33,12 @@ $(document).ready(function() {
 	 *****************/
 	$('#twitterSearch').click(function() {
 		// Get search terms and result type from header, then create URL to search with
-		q = $('#query').val();
-		searchURL = 'http://search.twitter.com/search.json?q=' + q + '&rpp=5&include_entities=true&result_type=mixed&callback=?';
+		var q = $('#query').val();
+		var searchURL = 'http://search.twitter.com/search.json?q=' + q + '&rpp=5&include_entities=true&result_type=mixed&callback=?';
 	
 		$.getJSON(searchURL, function(data) {
 			console.log(data);
-			appendLocation = $('#searchResultsList');
-			appendLocation.html('').css('list-style-type', 'none');
+			var appendLocation = $('#searchResultsList');
 			// Update header with search keywords
 			var header = $('<h3>')
 				.html('Search results for "<i>' + q + '</i>"')
@@ -33,17 +47,17 @@ $(document).ready(function() {
 			// Cycle through results and add them to the page
 			for (var i = 0, j = data.results.length; i < j; i++) {
 				if (i%2 === 0) {
-					bgColor = '#CCFFFF';
+                	var bgClass = 'tEvenBg';
 				} else {
-					bgColor = '#99DDFF';
+                	var bgClass = 'tOddBg';
 				}
 				var newLi = $('<li>')
-					.css('background', bgColor)
+					.attr('class', bgClass)
 					.appendTo(appendLocation)
 				;
 				var profileImg = $('<img>')
 					.attr('src', data.results[i].profile_image_url)
-					.css('float', 'left')
+					.css('class', 'tProfileImg')
 					.appendTo(newLi)
 				;
 				var userRealName = $('<span>')
@@ -76,13 +90,7 @@ $(document).ready(function() {
 	 **************/ 
 	// Shows and populates team list when a league icon is tapped 
 	$('#leagueSelect img').click(function() {
-		// changes opacity of league icon to show it's been selected
-		selectedLeague = $(this);
-		$('#leagueSelect img').each(function() {
-			$(this).css('opacity', '0.4');
-		});
-		$(selectedLeague).css('opacity', '1.0');
-		
+		var selectedLeague = $(this);
 		// puts the league ID onto the 'get news' button so it can be used in the query url
 		var leagueId = $(selectedLeague).attr('id');
 		$('#espnButton').data('leagueId', leagueId);
@@ -94,9 +102,9 @@ $(document).ready(function() {
 		var teamsURL = 'http://api.espn.com/v1/sports/' + leagueId + '/teams/:teamId?apikey=dbs57muuwwnphn5sbhb9w355';
 		$.getJSON(teamsURL, function(data) {
 			console.log(data);
-			appendLocation = $('#teamList');
+			var appendLocation = $('#teamList');
 			appendLocation.html('');
-			teams = data.sports[0].leagues[0].teams;
+			var teams = data.sports[0].leagues[0].teams;
 			for (var i = 0, j = teams.length; i < j; i++) {
 				var newOption = $('<option>')
 					.val(teams[i].id)
@@ -127,14 +135,14 @@ $(document).ready(function() {
 	// Loads up to 10 headlines for each team
 	$('#espnButton').click(function() {
 		// pull variables off of the 'get news' button
-		teamId = $(this).data('teamId');
-		teamName = $(this).data('teamName');
-		leagueId = $(this).data('leagueId');
+		var teamId = $(this).data('teamId');
+		var teamName = $(this).data('teamName');
+		var leagueId = $(this).data('leagueId');
 		
 		var searchURL = 'http://api.espn.com/v1/sports/' + leagueId + '/teams/' + teamId + '/news?apikey=dbs57muuwwnphn5sbhb9w355';
 		$.getJSON(searchURL, function(data) {
 			console.log(data);
-			appendLocation = $('#teamNewsList');
+			var appendLocation = $('#teamNewsList');
 			appendLocation.html('');
 			var header = $('<h3>')
 				.html('Top news stories for the ' + teamName)
@@ -165,4 +173,113 @@ $(document).ready(function() {
 		$('#teamNews').css('display', 'block');
 		$('#teamNewsHeader').html('Top News Stories for the ' + teamName);
 	});
+	
+	/************************
+	  Geo-Location & Compass
+	 ************************/
+    function geoSuccess(position) {
+        // display location details above map
+        $('#latLi').html('Latitude: ' + position.coords.latitude);
+        $('#lngLi').html('Longitude: ' + position.coords.longitude);
+        $('#altLi').html('Altitude: ' + position.coords.altitude);
+
+        // create the google map & marker
+        var loc = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+        // the Map method doesn't accept jquery objects, have to use getElementById
+        var map = new google.maps.Map(document.getElementById('mapDiv'), {
+            center: loc,
+            zoom: 10,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        });
+        var marker = new google.maps.Marker({
+            animation: google.maps.Animation.DROP,
+            position: loc,
+            map: map
+        });
+    }
+    
+    function geoError() {
+    	console.log('Error with Geo-Location');
+    }
+    
+    function compassSuccess (heading) {
+        var h = heading.magneticHeading;
+        var directions = ["N", "NE", "E", "SE", "S", "SW", "W", "NW"];
+        $('#compassLi').html('Facing: ' + directions[Math.floor((h%360)/45)]);
+    }
+    
+    function compassError () {
+    	console.log('Error with Compass');
+    }
+    
+    $('#whereAmI').click(function() {
+    	navigator.geolocation.getCurrentPosition(geoSuccess, geoError);
+		var watchId = navigator.compass.watchHeading(compassSuccess, compassError);
+    });
+	
+    /***************
+      Accelerometer
+     ***************/
+    function accelSuccess(accel) {
+    	// get variables from object since we will be testing them alot
+        var x = accel.x;
+        var y = accel.y;
+        var z = accel.z;
+        
+        // vertical tilts
+        if ((9 > y) && (y > 4) && (9 > z) && (z > 4)) {
+        	$('#vertTilt').html('Tilted Backwards');
+        } else if ((0.5 > x ) && (x > -0.5) && (0.5 > z) && (z > -0.5) && (10.5 > y) && (y > 9.5)) {
+        	$('#vertTilt').html('Device Straight Up');
+        } else if ((0.5 > x) && (x > -0.5) && (0.5 > y) && (y > -0.5) && (10.5 > z) && (z > 9.5)) {
+        	$('#vertTilt').html('Device Flat, Facing Upward');
+        }
+        
+        // left/right tilts
+        if (x > 1) {
+        	$('#horiTilt').html('Tilted Left');
+        } else if (x < -1) {
+        	$('#horiTilt').html('Tilted Right');
+        } else {
+            $('#horiTilt').html('No Tilt');
+        }
+    }
+    
+    function accelError() {
+    	console.log('Error with Accelerometer');
+    }
+    
+    $('#accelButton').click(function() {
+    	var accelOpts = { frequency: 1000 };
+    	watchId = navigator.accelerometer.watchAcceleration(accelSuccess, accelError, accelOpts);
+    });
+    
+	/********
+      Camera
+     ********/
+    $('#cameraButton').click(function(){
+    	function cameraSuccess(img) {
+        	var cameraDiv = $('#cameraDiv');
+            var cameraImg = $('<img>')
+            	.attr('src', 'data:image/jpeg;base64,' + img)
+                .appendTo(cameraDiv)
+            ;
+        }
+        
+        function cameraError(msg) {
+        	console.log('Error with Camera');
+        	console.log(msg);
+        }
+        
+        var cameraOpts = {
+        	quality: 75,
+            encodingType: Camera.EncodingType.JPEG,
+            targetWidth: 200,
+            targetHeight: 200,
+            destinationType: Camera.DestinationType.DATA_URL,
+            saveToPhotoAlbum: false
+        };
+    
+    	navigator.camera.getPicture(cameraSuccess, cameraError, cameraOpts);
+    });
 });

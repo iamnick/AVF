@@ -33,12 +33,12 @@ $(document).ready(function() {
 	 *****************/
 	$('#twitterSearch').click(function() {
 		// Get search terms and result type from header, then create URL to search with
-		q = $('#query').val();
-		searchURL = 'http://search.twitter.com/search.json?q=' + q + '&rpp=5&include_entities=true&result_type=mixed&callback=?';
+		var q = $('#query').val();
+		var searchURL = 'http://search.twitter.com/search.json?q=' + q + '&rpp=5&include_entities=true&result_type=mixed&callback=?';
 	
 		$.getJSON(searchURL, function(data) {
 			console.log(data);
-			appendLocation = $('#searchResultsList');
+			var appendLocation = $('#searchResultsList');
 			// Update header with search keywords
 			var header = $('<h3>')
 				.html('Search results for "<i>' + q + '</i>"')
@@ -47,9 +47,9 @@ $(document).ready(function() {
 			// Cycle through results and add them to the page
 			for (var i = 0, j = data.results.length; i < j; i++) {
 				if (i%2 === 0) {
-                	bgClass = 'tEvenBg';
+                	var bgClass = 'tEvenBg';
 				} else {
-                	bgClass = 'tOddBg';
+                	var bgClass = 'tOddBg';
 				}
 				var newLi = $('<li>')
 					.attr('class', bgClass)
@@ -90,7 +90,7 @@ $(document).ready(function() {
 	 **************/ 
 	// Shows and populates team list when a league icon is tapped 
 	$('#leagueSelect img').click(function() {
-		selectedLeague = $(this);
+		var selectedLeague = $(this);
 		// puts the league ID onto the 'get news' button so it can be used in the query url
 		var leagueId = $(selectedLeague).attr('id');
 		$('#espnButton').data('leagueId', leagueId);
@@ -102,9 +102,9 @@ $(document).ready(function() {
 		var teamsURL = 'http://api.espn.com/v1/sports/' + leagueId + '/teams/:teamId?apikey=dbs57muuwwnphn5sbhb9w355';
 		$.getJSON(teamsURL, function(data) {
 			console.log(data);
-			appendLocation = $('#teamList');
+			var appendLocation = $('#teamList');
 			appendLocation.html('');
-			teams = data.sports[0].leagues[0].teams;
+			var teams = data.sports[0].leagues[0].teams;
 			for (var i = 0, j = teams.length; i < j; i++) {
 				var newOption = $('<option>')
 					.val(teams[i].id)
@@ -135,14 +135,14 @@ $(document).ready(function() {
 	// Loads up to 10 headlines for each team
 	$('#espnButton').click(function() {
 		// pull variables off of the 'get news' button
-		teamId = $(this).data('teamId');
-		teamName = $(this).data('teamName');
-		leagueId = $(this).data('leagueId');
+		var teamId = $(this).data('teamId');
+		var teamName = $(this).data('teamName');
+		var leagueId = $(this).data('leagueId');
 		
 		var searchURL = 'http://api.espn.com/v1/sports/' + leagueId + '/teams/' + teamId + '/news?apikey=dbs57muuwwnphn5sbhb9w355';
 		$.getJSON(searchURL, function(data) {
 			console.log(data);
-			appendLocation = $('#teamNewsList');
+			var appendLocation = $('#teamNewsList');
 			appendLocation.html('');
 			var header = $('<h3>')
 				.html('Top news stories for the ' + teamName)
@@ -248,10 +248,10 @@ $(document).ready(function() {
     function accelError() {
     	console.log('Error with Accelerometer');
     }
-     
+    
     $('#accelButton').click(function() {
     	var accelOpts = { frequency: 1000 };
-    	var watchId = navigator.accelerometer.watchAcceleration(accelSuccess, accelError, accelOpts);
+    	watchId = navigator.accelerometer.watchAcceleration(accelSuccess, accelError, accelOpts);
     });
     
 	/********

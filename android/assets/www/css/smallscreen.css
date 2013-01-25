@@ -1,0 +1,217 @@
+/* 
+stylesheet for AVF Test App
+for Small Screens
+Nick Stelzer 
+*/
+
+html {
+    height: 100%;
+}
+
+body {
+	font-family: Arial, Helvetica, serif;
+	background: #11175e;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.contentBlock {
+	background: #ffffff;
+	border-radius: 25px;
+	margin: 20px 10px 20px 10px;
+	padding: 10px 20px 10px 20px;
+}
+
+.returnHome {
+	text-align: center;
+}
+
+select {
+	height: 30px;
+	width: auto;
+	font-size: 16px;
+}
+
+input[type='text'] {
+	height: 20px;
+	width: 180px;
+	font-size: 16px;
+}
+
+input[type='button'] {
+	height: 30px;
+	font-size: 18px;
+	margin: 10px 0px 10px 20px;
+}
+
+ul {
+	list-style-type: none;
+	margin: 0px;
+	padding: 0px;
+}
+
+.menu li {
+	padding: 0px 10px 0px 50px;
+	margin: 10px 0px 10px 0px;
+    background-repeat: no-repeat;
+    height: 48px;
+    line-height: 48px;
+}
+
+/* Menu Background Icons */
+
+#geoLi {
+	background-image: url('../img/geo-icon.png');
+}
+
+#accelLi {
+	background-image: url('../img/accel-icon.png');
+}
+
+#cameraLi {
+	background-image: url('../img/camera-icon.png');
+}
+
+#twitterLi {
+	background-image: url('../img/twitter-icon.png');
+}
+
+#espnLi {
+	background-image: url('../img/espn-icon.png');
+}
+
+#htmlVideoLi {
+	background-image: url('../img/video-icon.png');
+}
+
+#researchMenu li {
+	background-image: url('../img/research-icon.png');
+}
+
+h1 {
+	text-shadow: 2px 2px 1px rgba(17, 23, 94, .2);
+	text-align: center;
+    font-size: 24px;
+}
+
+h2 {
+	text-shadow: 2px 2px 1px rgba(17, 23, 94, .2);
+    font-size: 20px;
+}
+
+h3 {
+	text-shadow: 2px 2px 1px rgba(17, 23, 94, .2);
+}
+
+h4 {
+	text-shadow: 2px 2px 1px rgba(17, 23, 94, .2);
+}
+
+/* Styling for API pages */
+
+.header {
+	padding: 5px 0px 5px 0px;
+}
+
+.header img {
+	padding: 0px 15px 0px 0px;
+	vertical-align: middle;
+}
+
+.header h2 {
+	display: inline;
+}
+
+/* Twitter API */
+
+#searchResultsList li {
+	border-radius: 10px;
+	padding: 10px 10px 10px 10px;
+	margin: 10px 0px 10px 0px;
+}
+
+#searchResultsList li p {
+	padding: 5px 20px 5px 20px;
+}
+
+.tRealName {
+	font-size: 20px;
+	font-weight: bold;
+	text-shadow: 2px 2px 1px rgba(17, 23, 94, .2);
+}
+
+.tUserName {
+	font-size: 16px;
+	font-style: italic;
+	text-shadow: 2px 2px 1px rgba(17, 23, 94, .2);
+	opacity: 0.7;
+}
+
+.tSearchTime {
+	font-size: 12px;
+	font-style: italic;
+}
+
+.tProfileImg {
+	float: left;
+}
+
+.tOddBg {
+	background: #99DDFF;
+}
+
+.tEvenBg {
+	background: #CCFFFF;
+}
+
+/* ESPN API */
+
+#leagueSelect img {
+	margin: 5px 5px 5px 5px;
+	padding: 0px 10px 0px 10px;
+}
+
+#teamSelect {
+	display: inline;
+}
+
+#teamNewsList li {
+	background-image: -moz-linear-gradient(top, #FEFEFE 0%, #EBE5EF 100%);
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #FFFFFF), color-stop(1, #EBE5EF));
+	border-radius: 12px;
+	border: 2px solid #ABABAB;
+	margin: 20px 15px 30px 15px;
+	padding: 5px 15px 5px 15px;
+	box-shadow: 8px 8px 4px #888;
+}
+
+/* GeoLocation & Compass */
+
+#mapDiv {
+    border-radius: 25px;
+	margin: 20px 10px 20px 10px;
+	padding: 10px 20px 10px 20px;
+    height: 50%;
+    width: 80%;
+}
+
+/* Accelerometer */
+
+#accelDiv {
+	text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+#accelDiv span {
+	display: block;
+	font-size: 20px;
+    margin-bottom: 20px;
+}
+
+/* HTML Video Tag */
+
+#videoDiv {
+	text-align: center;
+}
