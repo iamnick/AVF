@@ -179,6 +179,7 @@ $(document).ready(function() {
 	 ************************/
     function geoSuccess(position) {
         // display location details above map
+        $('#locHeader').html('Location Details');
         $('#latLi').html('Latitude: ' + position.coords.latitude);
         $('#lngLi').html('Longitude: ' + position.coords.longitude);
         $('#altLi').html('Altitude: ' + position.coords.altitude);
@@ -195,6 +196,27 @@ $(document).ready(function() {
             animation: google.maps.Animation.DROP,
             position: loc,
             map: map
+        });
+        var placeVars = {
+        	location: loc,
+            radius: '1200',
+            types: ['store','restaurant', 'food', 'park', 'airport', 'university', 'stadium', 'hospital', 'movie_theater', 'library', 'parking', 'shopping_mall', 'zoo', 'campground', 'amusement_park', 'aquarium']
+        };
+        var nearbyPlaces = new google.maps.places.PlacesService(map);
+        nearbyPlaces.nearbySearch(placeVars, function(places, status){
+        	if (status === google.maps.places.PlacesServiceStatus.OK) {
+            	console.log(places);
+                var placesList = $('#placesList').html('<li><span class="listHeader">Nearby Places</span></li>');
+                var limit = 5;
+                if (places.length < 5) {
+                	limit = places.length;
+                }
+                for (var i =0; i < limit; i++) {
+                	var newPlace = $('<li>')
+                    	.html(places[i].name)
+                    	.appendTo(placesList);
+                }
+            }
         });
     }
     
@@ -262,6 +284,7 @@ $(document).ready(function() {
         	var cameraDiv = $('#cameraDiv');
             var cameraImg = $('<img>')
             	.attr('src', 'data:image/jpeg;base64,' + img)
+                .attr('class', 'imgThumb')
                 .appendTo(cameraDiv)
             ;
         }

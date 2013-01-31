@@ -193,6 +193,11 @@ h4 {
     width: 90%;
 }
 
+.listHeader {
+	font-weight: bold;
+	text-shadow: 2px 2px 1px rgba(17, 23, 94, .2);
+}
+
 /* Accelerometer */
 
 #accelDiv {
@@ -205,6 +210,15 @@ h4 {
 	display: block;
 	font-size: 20px;
     margin-bottom: 20px;
+}
+
+/* Camera */
+.imgThumb {
+	background: #FFFFFF;
+    width: 200px;
+    height: 200px;
+    padding: 8px 8px 8px 8px;
+	box-shadow: 2px 2px 8px #222222;
 }
 
 /* HTML Video Tag */
