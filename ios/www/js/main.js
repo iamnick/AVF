@@ -316,7 +316,19 @@ $(document).ready(function() {
                 var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
             	geocoder.geocode({'latLng': latlng}, function(results, status) {
                 	if (status === google.maps.GeocoderStatus.OK) {
-                        console.log(results);
+                        //console.log(results);
+                        for (var k in results)  {
+                        	//console.log(results[k].types);
+                        	if (results[k].types == 'postal_code') {
+                            	var city = results[k].address_components[1].long_name.replace(/\w\S*/g, function(text){
+                                		return text.charAt(0).toUpperCase() + text.substr(1).toLowerCase();
+                                    });
+                            	var locationStr = city + ', ' + results[k].address_components[2].short_name + ', ' + results[k].address_components[3].long_name;
+                                console.log(results[k].address_components);
+                                console.log('***');
+                                console.log(locationStr);		
+                            }
+                        }
                     } else {
                     	console.log('Geocoder failed due to: ' + status);
                     }
