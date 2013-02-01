@@ -226,12 +226,26 @@ h4 {
 
 /* Camera */
 
+#cameraDiv {
+	text-align: center;
+    overflow: auto;
+}
+
+.imgDiv {
+	width: 240px;
+    margin: 20px auto;
+}
+
 .imgThumb {
 	background: #FFFFFF;
     width: 200px;
     height: 200px;
     padding: 8px 8px 8px 8px;
 	box-shadow: 2px 2px 8px #222222;
+}
+
+.imgInfo {
+	style: block;
 }
 
 

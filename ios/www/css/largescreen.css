@@ -229,12 +229,29 @@ h4 {
 }
 
 /* Camera */
+
+#cameraDiv {
+	text-align: center;
+    overflow: auto;
+}
+
+.imgDiv {
+	width: 280px;
+    margin: 20px auto;
+    display: inline-block;
+}
+
 .imgThumb {
 	background: #FFFFFF;
     width: 200px;
     height: 200px;
     padding: 8px 8px 8px 8px;
 	box-shadow: 2px 2px 8px #222222;
+}
+
+.imgInfo {
+	style: block;
+    margin-top: 5px;
 }
 
 /* HTML Video Tag */

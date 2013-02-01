@@ -280,17 +280,55 @@ $(document).ready(function() {
       Camera
      ********/
     $('#cameraButton').click(function(){
-    	/*
         function cameraSuccess(img) {
         	var cameraDiv = $('#cameraDiv');
+            var imgDiv = $('<div>').attr('class', 'imgDiv');
+            
+            // places image thumbnail on page
             var cameraImg = $('<img>')
             	.attr('src', 'data:image/jpeg;base64,' + img)
                 .attr('class', 'imgThumb')
-                .appendTo(cameraDiv)
+                .appendTo(imgDiv)
             ;
             
+            // date details
+            var currentDate = new Date();
+            var dateString = (currentDate.getMonth()+1) + '/' + (currentDate.getDate()) + '/' + (currentDate.getFullYear());
+            var imgDateSpan = $('<span>')
+            	.html('<br />Taken on ' + dateString)
+                .attr('class', 'imgInfo')
+            	.appendTo(imgDiv);
+            ;
             
+            // location details
+            navigator.geolocation.getCurrentPosition( function(position) {
+            	var geocoder = new google.maps.Geocoder();
+                var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+            	geocoder.geocode({'latLng': latlng}, function(results, status) {
+                	if (status === google.maps.GeocoderStatus.OK) {
+                        for (var k in results) {
+                        	if (results[k].types == 'postal_code') {
+                            	var city = results[k].address_components[1].long_name.replace(/\w\S*/g, function(text){
+                                		return text.charAt(0).toUpperCase() + text.substr(1).toLowerCase();
+                                    });
+                            	var locationStr = city + ', ' + results[k].address_components[2].short_name + ', ' + results[k].address_components[3].long_name;
+                                
+                            	var imgLocSpan = $('<span>')
+                                	.html('<br />' + locationStr)
+                                 	.attr('class', 'imgInfo')
+                                 	.appendTo(imgDiv)
+                                ;
+                            }
+                        }
+                    } else {
+                    	console.log('Geocoder failed due to: ' + status);
+                    }
+                });
+            }, function() {
+            	console.log('Error with Geo-Location on Camera Page');
+            });
             
+            imgDiv.appendTo(cameraDiv);
         }
         
         function cameraError(msg) {
@@ -308,33 +346,6 @@ $(document).ready(function() {
         };
     
     	navigator.camera.getPicture(cameraSuccess, cameraError, cameraOpts);
-    	*/
-        // test section
-        // get location data
-            navigator.geolocation.getCurrentPosition( function(position) {
-            	var geocoder = new google.maps.Geocoder();
-                var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-            	geocoder.geocode({'latLng': latlng}, function(results, status) {
-                	if (status === google.maps.GeocoderStatus.OK) {
-                        //console.log(results);
-                        for (var k in results)  {
-                        	//console.log(results[k].types);
-                        	if (results[k].types == 'postal_code') {
-                            	var city = results[k].address_components[1].long_name.replace(/\w\S*/g, function(text){
-                                		return text.charAt(0).toUpperCase() + text.substr(1).toLowerCase();
-                                    });
-                            	var locationStr = city + ', ' + results[k].address_components[2].short_name + ', ' + results[k].address_components[3].long_name;
-                                console.log(results[k].address_components);
-                                console.log('***');
-                                console.log(locationStr);		
-                            }
-                        }
-                    } else {
-                    	console.log('Geocoder failed due to: ' + status);
-                    }
-                });
-            }, function() {
-            	console.log('Error with Geo-Location on Camera Page');
-            });
+            
     });
 });
