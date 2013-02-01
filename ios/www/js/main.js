@@ -180,9 +180,9 @@ $(document).ready(function() {
     function geoSuccess(position) {
         // display location details above map
         $('#locHeader').html('Location Details');
-        $('#latLi').html('Latitude: ' + position.coords.latitude);
-        $('#lngLi').html('Longitude: ' + position.coords.longitude);
-        $('#altLi').html('Altitude: ' + position.coords.altitude);
+        $('#latLi').html('Latitude: ' + position.coords.latitude.toFixed(4));
+        $('#lngLi').html('Longitude: ' + position.coords.longitude.toFixed(4));
+        $('#altLi').html('Altitude: ' + position.coords.altitude.toFixed(4));
 
         // create the google map & marker
         var loc = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
@@ -206,7 +206,7 @@ $(document).ready(function() {
         nearbyPlaces.nearbySearch(placeVars, function(places, status){
         	if (status === google.maps.places.PlacesServiceStatus.OK) {
             	console.log(places);
-                var placesList = $('#placesList').html('<li><span class="listHeader">Nearby Places</span></li>');
+                var placesList = $('#placesList').html('<li class="listHeader">Nearby Places</li>');
                 var limit = 5;
                 if (places.length < 5) {
                 	limit = places.length;
@@ -280,13 +280,17 @@ $(document).ready(function() {
       Camera
      ********/
     $('#cameraButton').click(function(){
-    	function cameraSuccess(img) {
+    	/*
+        function cameraSuccess(img) {
         	var cameraDiv = $('#cameraDiv');
             var cameraImg = $('<img>')
             	.attr('src', 'data:image/jpeg;base64,' + img)
                 .attr('class', 'imgThumb')
                 .appendTo(cameraDiv)
             ;
+            
+            
+            
         }
         
         function cameraError(msg) {
@@ -304,5 +308,21 @@ $(document).ready(function() {
         };
     
     	navigator.camera.getPicture(cameraSuccess, cameraError, cameraOpts);
+    	*/
+        // test section
+        // get location data
+            navigator.geolocation.getCurrentPosition( function(position) {
+            	var geocoder = new google.maps.Geocoder();
+                var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+            	geocoder.geocode({'latLng': latlng}, function(results, status) {
+                	if (status === google.maps.GeocoderStatus.OK) {
+                        console.log(results);
+                    } else {
+                    	console.log('Geocoder failed due to: ' + status);
+                    }
+                });
+            }, function() {
+            	console.log('Error with Geo-Location on Camera Page');
+            });
     });
 });

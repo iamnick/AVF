@@ -189,16 +189,25 @@ h4 {
 /* GeoLocation & Compass */
 
 #mapDiv {
-    border-radius: 25px;
-	margin: 20px 10px 20px 10px;
-	padding: 10px 20px 10px 20px;
     height: 50%;
-    width: 80%;
+    width: 100%;
+}
+
+
+#locDetailsDiv {
+	overflow: auto;
+}
+
+#locDetailsDiv ul {
+	padding: 0px 20px 0px 20px;
+    margin: 10px 0px 20px 0px;
 }
 
 .listHeader {
 	font-weight: bold;
+    font-size: 18px;
 	text-shadow: 2px 2px 1px rgba(17, 23, 94, .2);
+    margin-bottom: 10px;
 }
 
 /* Accelerometer */
